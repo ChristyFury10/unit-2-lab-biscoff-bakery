@@ -4,6 +4,7 @@
 const express = require('express');
 const app = express();
 const port = 3000;
+app.set("view engine", "ejs");
 
 // =======================================
 //              DATABASE
@@ -15,12 +16,14 @@ const bakedGoods = require('./models/bakedgoods.js');
 // =======================================
 // index route
 app.get('/bakedgoods', (req, res) => {
-  res.send(bakedGoods);
+  res.render("index", {bakedGoods})
+
 });
 
 // show route
 app.get('/bakedgoods/:id', (req, res) => {
-  res.send(bakedGoods[req.params.id]);
+  let item = bakedGoods[req.params.id];
+  res.render("show", {item})
 });
 
 // =======================================

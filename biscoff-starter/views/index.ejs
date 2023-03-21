@@ -1,0 +1,11 @@
+<!-- --include -->
+
+<ul>
+    <ul>Baked Goods
+        <% for (let i = 0; i < bakedGoods.length ; i++){ %>
+            <li>
+                <h3><a href = "/bakedgoods/<%= i %>"><%= bakedGoods[i].name %></a></h3>
+            </li>
+       <% } %>
+      </ul>
+</ul>
