@@ -10,6 +10,7 @@ app.set("view engine", "ejs");
 //              DATABASE
 // =======================================
 const bakedGoods = require('./models/bakedgoods.js');
+app.use(express.urlencoded({ extended:false }));
 
 // =======================================
 //              ROUTES
@@ -21,9 +22,22 @@ app.get('/bakedgoods', (req, res) => {
 });
 
 // show route
+
+app.get('/bakedgoods/new', (req, res) => {
+  res.render("new")
+});
+
 app.get('/bakedgoods/:id', (req, res) => {
   let item = bakedGoods[req.params.id];
   res.render("show", {item})
+});
+
+// POST
+app.post('/bakedgoods', (req, res) => {
+  console.log(req.body)
+bakedGoods.push(req.body);
+// redirect to the INDEX route for fruits
+res.redirect('/bakedgoods');
 });
 
 // =======================================
